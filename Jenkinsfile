@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('deploy') {
+      steps {
+        sh 'cp /root/.jenkins/workspace/manasa-test-7_master/target/JenkinsWar.war /opt/apache-tomcat-9.0.30/webapps'
+      }
+    }
+
   }
 }
