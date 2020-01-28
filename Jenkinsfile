@@ -21,11 +21,25 @@ pipeline {
           }
         }
 
-        stage('remote-tomcat') {
-          steps {
-            sh 'scp /root/.jenkins/workspace/manasa-test-7_master/target/JenkinsWar.war /opt/apache-tomcat-9.0.30/webapps '
-            node(label: 'tkl8-vm-1')
-          }
+         
+          
+          stage('remote-tomcat') {
+  script {
+  sshPublisher(
+   continueOnError: false, failOnError: true,
+   publishers: [
+    sshPublisherDesc(
+     verbose: true,
+     transfers: [
+      sshTransfer(
+       sourceFiles: "/root/.jenkins/workspace/manasa-test-7_master/target/JenkinsWar.war",
+       remoteDirectory: "/opt/apache-tomcat-9.0.30/webapps",
+       execCommand: "run commands after copy?"
+      )
+     ])
+   ])
+ }
+}
         }
 
       }
