@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('deploy') {
+      steps {
+        sh 'cp /root/.jenkins/workspace/jenkins.war /tomcatpat'
+      }
+    }
+
   }
 }
