@@ -21,24 +21,6 @@ pipeline {
           }
         }
 
-         
-          
-          stage('remote-tomcat') {
-  script {
-  sshPublisher(
-   continueOnError: false, failOnError: true,
-   publishers: [
-    sshPublisherDesc(
-     verbose: true,
-     transfers: [
-      sshTransfer(
-       sourceFiles: "/root/.jenkins/workspace/manasa-test-7_master/target/JenkinsWar.war",
-       remoteDirectory: "/opt/apache-tomcat-9.0.30/webapps",
-       execCommand: "run commands after copy?"
-      )
-     ])
-   ])
- }
 }
         }
 
